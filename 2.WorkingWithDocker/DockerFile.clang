@@ -1,0 +1,18 @@
+# Используем базовый образ Ubuntu
+FROM ubuntu:22.04
+
+# Устанавливаем необходимые пакеты и компиляторы
+RUN apt-get update && \
+    apt-get install -y \
+    clang \
+    cmake \
+    make
+
+# Устанавливаем рабочую директорию
+WORKDIR /test
+
+# Копируем проект в контейнер
+COPY . .
+
+# Компилируем проект
+RUN cmake . && make
